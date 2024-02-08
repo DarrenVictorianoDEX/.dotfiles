@@ -1,5 +1,5 @@
 # .dotfiles
-For beter result use [Catppuccin](https://github.com/catppuccin/catppuccin) theme on iTerm2 Terminal
+For better result use [Catppuccin](https://github.com/catppuccin/catppuccin) theme on iTerm2 Terminal
 
 
 ## Install
