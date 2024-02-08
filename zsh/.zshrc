@@ -146,7 +146,7 @@ RPROMPT='%{$fg[blue]%}($(kubectl_prompt))%{$reset_color%}'
 
 ## Alias Functions
 source ~/.zsh_functions
-source ~/.zsh_functions_dxcm
+# source ~/.zsh_functions_dxcm
 
 ## Alias
 source ~/.zsh_aliases
