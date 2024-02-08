@@ -1,5 +1,6 @@
-alias zshrc="code ~/.zshrc"
-alias p10krc="code ~/.p10k.zsh"
+alias dotfiles="code ~/.dotfiles"
+alias zshrc="code ~/.dotfiles/zsh"
+alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias k="kubectl"
 alias refresh="source ~/.zshrc"
