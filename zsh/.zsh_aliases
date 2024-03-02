@@ -19,4 +19,5 @@ alias updateimage='conda activate py38; python /Users/dxv1220/code/script/update
 alias updatefluentd='conda activate py38; python /Users/dxv1220/code/script/update_fluentd.py'
 alias rebootns='conda activate py38; python /Users/dxv1220/code/script/reboot_jobs.py'
 alias breakpqfile='conda activate py38; python /Users/dxv1220/code/script/break_parsed_pq_file.py'
+alias patchnetskope='conda activate py38; python /Users/dxv1220/code/script/patch_netskope.py'
 alias ls='colorls'
