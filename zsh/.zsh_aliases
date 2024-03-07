@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias dotfiles="code ~/.dotfiles"
 alias zshrc="code ~/.dotfiles/zsh"
 alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"

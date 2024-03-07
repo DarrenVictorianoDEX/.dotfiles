@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function trash() {
 	# move items to trash
 	mv -f "$1" ~/.Trash
