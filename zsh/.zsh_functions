@@ -35,7 +35,7 @@ function kreadsecrets () {
 }
 
 function jl() {
-	cd /Users/dxv1220/code/jupyter_notes
+	cd /Users/dxv1220/code/jupyter_notes || exit
 	jupyter-lab
 }
 

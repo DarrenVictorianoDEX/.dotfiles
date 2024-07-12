@@ -145,12 +145,15 @@ RPROMPT='%{$fg[blue]%}($(kubectl_prompt))%{$reset_color%}'
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+## Alias
+source ~/.zsh_aliases
+
 ## Alias Functions
 source ~/.zsh_functions
 source ~/.zsh_functions_dxcm
 
-## Alias
-source ~/.zsh_aliases
+# ENV Variables
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 ## Binds
 # Example aliases
