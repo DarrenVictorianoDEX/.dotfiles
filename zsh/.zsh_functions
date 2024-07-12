@@ -74,7 +74,8 @@ function getimage() {
 	kubectl get statefulsets -n "$namespace" -o jsonpath='{.items[0].spec.template.spec.containers[0].image}'
 }
 
-function show_git_aliases() {
+function sga() {
+	# show git aliases
     # Assuming Oh My Zsh is installed in the default location
     git_plugin_file="$HOME/.oh-my-zsh/plugins/git/git.plugin.zsh"
     
