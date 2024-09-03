@@ -19,13 +19,14 @@ install_stow() {
 install_oh_my_zsh() {
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh..."
+    # the --unattended flag is to prevent oh-my-zsh installation script to create a new session.
+    # if we dont do this, it will stop our installation script
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     echo "oh-my-zsh is installed."
   else
     echo "oh-my-zsh is already installed."
   fi
 }
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/terminal_setup/install.sh)"
 
 install_powerlevel10k() {
   local p10k_dir="${ZSH_CUSTOM}/themes/powerlevel10k"
@@ -78,7 +79,7 @@ stow_dotfiles() {
     cd "$DOTFILES_DIR"
 
     # Loop through each dotfile directory
-    for dir in zshrc p10k hushlogin; do
+    for dir in zsh p10k hushlogin; do
       home_file="$HOME/.$dir"  # Construct the home directory file name with the prefix "."
 
       # Check if the corresponding file exists in the home directory and delete it
