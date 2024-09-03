@@ -25,6 +25,7 @@ install_oh_my_zsh() {
     echo "oh-my-zsh is already installed."
   fi
 }
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/terminal_setup/install.sh)"
 
 install_powerlevel10k() {
   local p10k_dir="${ZSH_CUSTOM}/themes/powerlevel10k"
