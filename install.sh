@@ -6,14 +6,9 @@ set -e  # Exit on any error
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 DOTFILES_DIR="$HOME/.dotfiles"
 
-install_stow() {
-  if ! command -v stow &> /dev/null; then
-    echo "Installing GNU Stow..."
-    brew install stow
-    echo "GNU Stow is installed."
-  else
-    echo "GNU Stow is already installed."
-  fi
+install_brew_packages() {
+  echo "Installing homebrew and packages from brew.sh"
+  sh -c "$(curl -fsSL https://link.com)"
 }
 
 install_oh_my_zsh() {
@@ -104,7 +99,7 @@ stow_dotfiles() {
 
 # Main function to run all installations and configurations
 main() {
-  install_stow
+  install_brew_packages
   install_oh_my_zsh
   install_powerlevel10k
   install_autosuggestions
