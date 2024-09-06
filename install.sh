@@ -6,61 +6,14 @@ set -e  # Exit on any error
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 DOTFILES_DIR="$HOME/.dotfiles"
 
-install_stow() {
-  if ! command -v stow &> /dev/null; then
-    echo "Installing GNU Stow..."
-    brew install stow
-    echo "GNU Stow is installed."
-  else
-    echo "GNU Stow is already installed."
-  fi
+install_brew_packages() {
+  echo "Installing homebrew and packages from brew.sh"
+  sh -c "$(curl -fsSL https://link.com)"
 }
 
-install_oh_my_zsh() {
-  if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing oh-my-zsh..."
-    # the --unattended flag is to prevent oh-my-zsh installation script to create a new session.
-    # if we dont do this, it will stop our installation script
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    echo "oh-my-zsh is installed."
-  else
-    echo "oh-my-zsh is already installed."
-  fi
-}
-
-install_powerlevel10k() {
-  local p10k_dir="${ZSH_CUSTOM}/themes/powerlevel10k"
-  if [ ! -d "$p10k_dir" ]; then
-    echo "Installing powerlevel10k..."
-    mkdir -p "${ZSH_CUSTOM}/themes"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$p10k_dir"
-    echo "powerlevel10k is installed."
-  else
-    echo "powerlevel10k is already installed."
-  fi
-}
-
-install_autosuggestions() {
-  local autosuggest_dir="${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
-  if [ ! -d "$autosuggest_dir" ]; then
-    echo "Installing zsh-autosuggestions..."
-    mkdir -p "${ZSH_CUSTOM}/plugins"
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$autosuggest_dir"
-    echo "zsh-autosuggestions installed."
-  else
-    echo "zsh-autosuggestions is already installed."
-  fi
-}
-
-install_syntax_highlighting() {
-  local syntax_highlight_dir="${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
-  if [ ! -d "$syntax_highlight_dir" ]; then
-    echo "Installing zsh-syntax-highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$syntax_highlight_dir"
-    echo "zsh-syntax-highlighting installed."
-  else
-    echo "zsh-syntax-highlighting is already installed."
-  fi
+install_ohmyzsh() {
+  echo "Installing oh-my-zsh and plugins from ohmyzsh.sh"
+  sh -c "$(curl -fsSL https://link.com)"
 }
 
 clone_dotfiles() {
@@ -74,13 +27,27 @@ clone_dotfiles() {
 }
 
 stow_dotfiles() {
+  # Ensure that the DOTFILES_DIR variable is set to the path of your dotfiles directory
+  if [ -z "$DOTFILES_DIR" ]; then
+    echo "DOTFILES_DIR is not set. Please set it to your dotfiles directory path."
+    return 1
+  fi
+
+  # Check if the dotfiles directory exists
   if [ -d "$DOTFILES_DIR" ]; then
     echo "Stowing dotfiles..."
-    cd "$DOTFILES_DIR"
+    cd "$DOTFILES_DIR" || return 1
 
-    # Loop through each dotfile directory
-    for dir in zsh p10k hushlogin; do
-      home_file="$HOME/.$dir"  # Construct the home directory file name with the prefix "."
+    # Declare an associative array to map folder names to home directory file names
+    declare -A dotfile_map=(
+      [zsh]=".zshrc"
+      [p10k]=".p10k.zsh"
+      [hushlogin]=".hushlogin"
+    )
+
+    # Loop through each dotfile directory in the map
+    for dir in "${!dotfile_map[@]}"; do
+      home_file="$HOME/${dotfile_map[$dir]}"  # Get the corresponding home file name
 
       # Check if the corresponding file exists in the home directory and delete it
       if [ -e "$home_file" ]; then
@@ -104,11 +71,8 @@ stow_dotfiles() {
 
 # Main function to run all installations and configurations
 main() {
-  install_stow
-  install_oh_my_zsh
-  install_powerlevel10k
-  install_autosuggestions
-  install_syntax_highlighting
+  install_brew_packages
+  install_ohmyzsh
   clone_dotfiles
   stow_dotfiles
 }
