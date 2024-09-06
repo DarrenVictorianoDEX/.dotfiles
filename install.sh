@@ -8,12 +8,12 @@ DOTFILES_DIR="$HOME/.dotfiles"
 
 install_brew_packages() {
   echo "Installing homebrew and packages from brew.sh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/brew.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/brew.sh)"
 }
 
 install_ohmyzsh() {
   echo "Installing oh-my-zsh and plugins from ohmyzsh.sh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/ohmyzsh.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/ohmyzsh.sh)"
 }
 
 clone_dotfiles() {
