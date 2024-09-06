@@ -5,5 +5,5 @@ A lot can be improved, but those will be done in another branch.
 
 To install
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/install.sh)"
 ```

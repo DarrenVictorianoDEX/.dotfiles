@@ -8,12 +8,12 @@ DOTFILES_DIR="$HOME/.dotfiles"
 
 install_brew_packages() {
   echo "Installing homebrew and packages from brew.sh"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/brew.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/brew.sh)"
 }
 
 install_ohmyzsh() {
   echo "Installing oh-my-zsh and plugins from ohmyzsh.sh"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/ohmyzsh.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/ohmyzsh.sh)"
 }
 
 clone_dotfiles() {
@@ -38,16 +38,14 @@ stow_dotfiles() {
     echo "Stowing dotfiles..."
     cd "$DOTFILES_DIR" || return 1
 
-    # Declare an associative array to map folder names to home directory file names
-    declare -A dotfile_map=(
-      [zsh]=".zshrc"
-      [p10k]=".p10k.zsh"
-      [hushlogin]=".hushlogin"
-    )
+    # Define two parallel arrays: one for directories and one for corresponding home files
+    dirs=("zsh" "p10k" "hushlogin")
+    home_files=(".zshrc" ".p10k.zsh" ".hushlogin")
 
-    # Loop through each dotfile directory in the map
-    for dir in "${!dotfile_map[@]}"; do
-      home_file="$HOME/${dotfile_map[$dir]}"  # Get the corresponding home file name
+    # Loop through each directory and corresponding home file
+    for i in "${!dirs[@]}"; do
+      dir="${dirs[$i]}"
+      home_file="$HOME/${home_files[$i]}"
 
       # Check if the corresponding file exists in the home directory and delete it
       if [ -e "$home_file" ]; then
