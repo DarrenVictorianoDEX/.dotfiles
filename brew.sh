@@ -26,7 +26,7 @@ brew update
 # List of packages to install
 packages=(
   stow
-  colorls
+  # colorls
   # Add more packages here
 )
 
