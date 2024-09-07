@@ -11,6 +11,16 @@ install_package() {
   fi
 }
 
+install_casks() {
+  local cask_name=$1
+  if ! brew list "$cask_name" &> /dev/null; then
+    echo "Installing $cask_name..."
+    brew install --cask "$cask_name"
+  else
+    echo "$cask_name is already installed."
+  fi
+}
+
 # Install Homebrew if not installed
 if ! command -v brew &> /dev/null; then
   echo "Homebrew is not installed. Installing Homebrew..."
@@ -27,6 +37,11 @@ brew update
 packages=(
   stow
   git-delta
+  fzf
+  tldr
+  tmux
+  jq
+  ripgrep
   # colorls
   # Add more packages here
 )
@@ -34,6 +49,17 @@ packages=(
 # Install each package in the list
 for package in "${packages[@]}"; do
   install_package "$package"
+done
+
+casks=(
+  alt-tab
+  miniconda
+  hiddenbar
+)
+
+# Install each cask in the list
+for cask in "${casks[@]}"; do
+  install_casks "$cask"
 done
 
 echo "All installations complete."
