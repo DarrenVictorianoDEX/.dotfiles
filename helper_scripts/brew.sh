@@ -62,4 +62,6 @@ for cask in "${casks[@]}"; do
   install_casks "$cask"
 done
 
+gem install colorls
+
 echo "All installations complete."

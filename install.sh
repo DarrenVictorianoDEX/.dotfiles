@@ -39,8 +39,8 @@ stow_dotfiles() {
     cd "$DOTFILES_DIR" || return 1
 
     # Define two parallel arrays: one for directories and one for corresponding home files
-    dirs=("zsh" "p10k" "hushlogin")
-    home_files=(".zshrc" ".p10k.zsh" ".hushlogin")
+    dirs=("zsh" "p10k" "hushlogin" "git")
+    home_files=(".zshrc" ".p10k.zsh" ".hushlogin" ".gitconfig")
 
     # Loop through each directory and corresponding home file
     for i in "${!dirs[@]}"; do
