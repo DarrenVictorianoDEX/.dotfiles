@@ -26,6 +26,7 @@ brew update
 # List of packages to install
 packages=(
   stow
+  git-delta
   # colorls
   # Add more packages here
 )
