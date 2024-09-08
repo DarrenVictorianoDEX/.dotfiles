@@ -80,7 +80,7 @@ stow_dotfiles() {
 # Main function to run all installations and configurations
 main() {
   install_brew_packages
-  install_font
+  # install_font
   install_ohmyzsh
   clone_dotfiles
   stow_dotfiles
