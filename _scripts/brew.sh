@@ -42,7 +42,7 @@ packages=(
   tmux
   jq
   ripgrep
-  # colorls
+  mas  # mac app store
   # Add more packages here
 )
 
@@ -62,6 +62,8 @@ casks=(
   itsycal
   lulu
   obsidian
+  bitwarden
+  karabiner-elements
 )
 
 # Install each cask in the list
