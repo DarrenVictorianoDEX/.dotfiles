@@ -62,7 +62,7 @@ casks=(
   itsycal
   lulu
   obsidian
-)
+  raycast)
 
 # Install each cask in the list
 for cask in "${casks[@]}"; do
