@@ -14,5 +14,5 @@ This script automates the installation and configuration of my development envir
 ## Installation
 Run this command in your terminal:
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/install.sh)"
 ```
