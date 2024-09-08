@@ -8,17 +8,17 @@ DOTFILES_DIR="$HOME/.dotfiles"
 
 install_brew_packages() {
   echo "Installing homebrew and packages from brew.sh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/helper_scripts/brew.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/_scripts/brew.sh)"
 }
 
 update_app_settings() {
   echo "changing MacOS defaults"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/helper_scripts/app_settings.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/_scripts/app_settings.sh)"
 }
 
 install_ohmyzsh() {
   echo "Installing oh-my-zsh and plugins from ohmyzsh.sh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/helper_scripts/ohmyzsh.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/_scripts/ohmyzsh.sh)"
 }
 
 clone_dotfiles() {
