@@ -36,6 +36,7 @@ brew update
 # List of packages to install
 packages=(
   stow
+  git
   git-delta
   fzf
   tldr
