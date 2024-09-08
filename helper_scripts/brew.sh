@@ -55,6 +55,8 @@ casks=(
   alt-tab
   miniconda
   hiddenbar
+  font-meslo-for-powerlevel10k
+  font-fira-code-nerd-font
 )
 
 # Install each cask in the list
