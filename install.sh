@@ -83,4 +83,4 @@ main() {
 
 # Execute main function
 main
-echo -e "\nSetup completed. Quit this terminal session (cmd + q) then relaunch iTerm2 to see the updates."
+echo "\nSetup completed. Quit this terminal session (cmd + q) then relaunch iTerm2 to see the updates."
