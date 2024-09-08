@@ -31,10 +31,21 @@ clone_dotfiles() {
   fi
 }
 
+update_app_settings() {
+  echo "changing MacOS defaults using _scripts/app_settings.sh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/app_settings.sh)"
+}
+
 stow_dotfiles() {
   # Ensure that the DOTFILES_DIR variable is set to the path of your dotfiles directory
   if [ -z "$DOTFILES_DIR" ]; then
     echo "DOTFILES_DIR is not set. Please set it to your dotfiles directory path."
+    return 1
+  fi
+
+  # Ensure that a list of dotfiles is provided as an argument
+  if [ "$#" -eq 0 ]; then
+    echo "No dotfiles list provided. Please provide a list of directories and corresponding home files."
     return 1
   fi
 
@@ -43,14 +54,13 @@ stow_dotfiles() {
     echo "Stowing dotfiles..."
     cd "$DOTFILES_DIR" || return 1
 
-    # Define two parallel arrays: one for directories and one for corresponding home files
-    dirs=("zsh" "p10k" "hushlogin" "git" "zprofile")
-    home_files=(".zshrc" ".p10k.zsh" ".hushlogin" ".gitconfig" ".zprofile")
+    # Read the list of dotfiles from the argument
+    dotfiles_list=("$@")
 
-    # Loop through each directory and corresponding home file
-    for i in "${!dirs[@]}"; do
-      dir="${dirs[$i]}"
-      home_file="$HOME/${home_files[$i]}"
+    # Loop through each entry in the dotfiles_list
+    for dotfile in "${dotfiles_list[@]}"; do
+      dir="${dotfile%%:*}"        # Extract directory name before the colon
+      home_file="$HOME/${dotfile##*:}"  # Extract home file name after the colon
 
       # Check if the corresponding file exists in the home directory and delete it
       if [ -e "$home_file" ]; then
@@ -72,21 +82,21 @@ stow_dotfiles() {
   fi
 }
 
-update_app_settings() {
-  echo "changing MacOS defaults using _scripts/app_settings.sh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/app_settings.sh)"
-}
+# Stow Map folder_name:file_name
+dotfiles_list=(
+  "zsh:.zshrc"
+  "p10k:.p10k.zsh"
+  "hushlogin:.hushlogin"
+  "git:.gitconfig"
+)
 
 # Main function to run all installations and configurations
-main() {
-  install_brew_packages
-  install_from_appstore
-  install_ohmyzsh
-  clone_dotfiles
-  stow_dotfiles
-  update_app_settings
-}
+install_brew_packages
+install_from_appstore
+install_ohmyzsh
+clone_dotfiles
+stow_dotfiles "${dotfiles_list[@]}"
+update_app_settings
 
 # Execute main function
-main
 echo "\nSetup completed. Quit this terminal session (cmd + q) then relaunch iTerm2 to see the updates."
