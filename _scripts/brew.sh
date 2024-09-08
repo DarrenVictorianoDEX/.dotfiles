@@ -42,7 +42,7 @@ packages=(
   tmux
   jq
   ripgrep
-  # colorls
+  mas  # mac app store
   # Add more packages here
 )
 
@@ -62,7 +62,10 @@ casks=(
   itsycal
   lulu
   obsidian
-  raycast)
+  raycast
+  bitwarden
+  karabiner-elements
+)
 
 # Install each cask in the list
 for cask in "${casks[@]}"; do
