@@ -66,4 +66,4 @@ done
 
 gem install colorls
 
-echo "All installations complete."
+echo -e "/nbrew.sh completed successfully."

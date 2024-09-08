@@ -1,9 +1,17 @@
-# My dotfiles
+# Dotfiles Setup Script
 
-This is the first iteration of my Terminal setup.
-A lot can be improved, but those will be done in another branch.
+This script automates the installation and configuration of my development environment on macOS. It sets up the following:
 
-To install
+- Homebrew and essential packages
+- macOS system defaults
+- Oh My Zsh and its plugins
+- Cloning and stowing my dotfiles repository
+
+## Prerequisites
+ - Xcode Commandline Tool
+ - iTerm2
+
+## Usage
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/install.sh)"
 ```

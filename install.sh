@@ -11,11 +11,6 @@ install_brew_packages() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/helper_scripts/brew.sh)"
 }
 
-install_font() {
-  echo "Installing font and activating it for iTerm2"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/helper_scripts/install_font.sh)"
-}
-
 change_macos_defaults() {
   echo "changing MacOS defaults"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/dotfiles/main/helper_scripts/mac_defaults.sh)"
@@ -80,7 +75,6 @@ stow_dotfiles() {
 # Main function to run all installations and configurations
 main() {
   install_brew_packages
-  # install_font
   install_ohmyzsh
   clone_dotfiles
   stow_dotfiles
@@ -89,3 +83,4 @@ main() {
 
 # Execute main function
 main
+echo -e "\nSetup completed. Quit this terminal session (cmd + q) then relaunch iTerm2 to see the updates."
