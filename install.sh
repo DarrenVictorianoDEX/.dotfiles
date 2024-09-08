@@ -11,9 +11,9 @@ install_brew_packages() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/brew.sh)"
 }
 
-update_app_settings() {
-  echo "changing MacOS defaults"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/app_settings.sh)"
+install_from_appstore() {
+  echo "Install from Apple AppStore"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/appstore.sh)"
 }
 
 install_ohmyzsh() {
@@ -72,9 +72,15 @@ stow_dotfiles() {
   fi
 }
 
+update_app_settings() {
+  echo "changing MacOS defaults"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/app_settings.sh)"
+}
+
 # Main function to run all installations and configurations
 main() {
   install_brew_packages
+  install_from_appstore
   install_ohmyzsh
   clone_dotfiles
   stow_dotfiles
