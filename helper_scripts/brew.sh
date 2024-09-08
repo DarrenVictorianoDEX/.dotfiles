@@ -52,11 +52,16 @@ for package in "${packages[@]}"; do
 done
 
 casks=(
+  iterm2
+  visual-studio-code
   alt-tab
   miniconda
   hiddenbar
   font-meslo-for-powerlevel10k
   font-fira-code-nerd-font
+  itsycal
+  lulu
+  obsidian
 )
 
 # Install each cask in the list
