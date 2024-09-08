@@ -52,8 +52,8 @@ casks=(
   obsidian
   raycast
   bitwarden
-  karabiner-elements
-    # Add more casks here
+  # karabiner-elements  # this requires a sudo installtion
+  # Add more casks here
 )
 
 # Run the functions with the lists as arguments
