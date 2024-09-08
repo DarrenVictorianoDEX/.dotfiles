@@ -7,17 +7,17 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 DOTFILES_DIR="$HOME/.dotfiles"
 
 install_brew_packages() {
-  echo "Installing homebrew and packages from brew.sh"
+  echo "Installing homebrew and packages from _scripts/brew.sh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/brew.sh)"
 }
 
 install_from_appstore() {
-  echo "Install from Apple AppStore"
+  echo "Install from Apple AppStore using _scripts/appstore.sh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/appstore.sh)"
 }
 
 install_ohmyzsh() {
-  echo "Installing oh-my-zsh and plugins from ohmyzsh.sh"
+  echo "Installing oh-my-zsh and plugins from _scripts/ohmyzsh.sh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/ohmyzsh.sh)"
 }
 
@@ -73,7 +73,7 @@ stow_dotfiles() {
 }
 
 update_app_settings() {
-  echo "changing MacOS defaults"
+  echo "changing MacOS defaults using _scripts/app_settings.sh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/_scripts/app_settings.sh)"
 }
 
