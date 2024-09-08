@@ -63,6 +63,7 @@ casks=(
   lulu
   obsidian
   bitwarden
+  karabiner-elements
 )
 
 # Install each cask in the list
