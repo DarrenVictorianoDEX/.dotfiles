@@ -34,7 +34,7 @@ packages=(
   tmux
   jq
   ripgrep
-  exa
+  eza
   mas  # mac app store
   # Add more packages here
 )
