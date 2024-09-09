@@ -92,7 +92,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Alias
-alias ls='eza --icons'
+alias ls='eza --icons -a'
 
 # Functions
 
