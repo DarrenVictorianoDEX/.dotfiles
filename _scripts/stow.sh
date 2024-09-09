@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Define variables
 DOTFILES_DIR="$HOME/.dotfiles"

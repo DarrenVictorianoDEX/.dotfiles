@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # iTerm2: Setup Font
 /usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Normal Font' 'MesloLGS-NF-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 install_packages() {
   local packages=("$@")
@@ -34,6 +34,7 @@ packages=(
   tmux
   jq
   ripgrep
+  exa
   mas  # mac app store
   # Add more packages here
 )
@@ -59,7 +60,5 @@ casks=(
 # Run the functions with the lists as arguments
 install_packages "${packages[@]}"
 install_casks "${casks[@]}"
-
-gem install colorls
 
 echo "\nbrew.sh completed successfully."

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Function to check if apps are installed and install them if not
 install_from_appstore() {
@@ -23,6 +23,7 @@ app_list=(
     "302584613:Kindle"
     "1018301773:AdBlock Pro"
     "441258766:Magnet"
+    "1352778147:Bitwarden"
 )
 
 # Run the function with the app list as argument
