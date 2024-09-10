@@ -1,32 +1,55 @@
 #!/bin/sh
 
+# Function to set or add plist properties
+set_or_add_plist_property() {
+    property=$1
+    type=$2
+    value=$3
+    plist_path=~/Library/Preferences/com.googlecode.iterm2.plist
+
+    # Check if the property exists, suppressing both stdout and stderr
+    /usr/libexec/PlistBuddy -c "Print $property" "$plist_path" > /dev/null 2>&1
+
+    if [ $? -eq 0 ]; then
+        # If property exists, set it, suppressing both stdout and stderr
+        /usr/libexec/PlistBuddy -c "Set $property $value" "$plist_path" > /dev/null 2>&1
+        new_value=$(/usr/libexec/PlistBuddy -c "Print $property" "$plist_path")
+        echo "Set: $property -> $new_value"
+    else
+        # If property does not exist, add it, suppressing both stdout and stderr
+        /usr/libexec/PlistBuddy -c "Add $property $type $value" "$plist_path" > /dev/null 2>&1
+        new_value=$(/usr/libexec/PlistBuddy -c "Print $property" "$plist_path")
+        echo "Add: $property -> $new_value"
+    fi
+}
+
 # iTerm2: Setup Font
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Normal Font' 'MesloLGS-NF-Regular 14'" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Draw Powerline Glyphs' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Horizontal Spacing' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Vertical Spacing' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Use Bold Font' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Use Bright Bold' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Use Italic Font' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'ASCII Anti Aliased' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Non-ASCII Anti Aliased' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Use Non-ASCII Font' 0" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Ambiguous Double Width' 0" ~/Library/Preferences/com.googlecode.iterm2.plist
+set_or_add_plist_property ":'New Bookmarks':0:'Normal Font'" string "'MesloLGS-NF-Regular 14'"
+set_or_add_plist_property ":'New Bookmarks':0:'Draw Powerline Glyphs'" bool 1
+set_or_add_plist_property ":'New Bookmarks':0:'Horizontal Spacing'" integer 1
+set_or_add_plist_property ":'New Bookmarks':0:'Vertical Spacing'" integer 1
+set_or_add_plist_property ":'New Bookmarks':0:'Use Bold Font'" bool 1
+set_or_add_plist_property ":'New Bookmarks':0:'Use Bright Bold'" bool 1
+set_or_add_plist_property ":'New Bookmarks':0:'Use Italic Font'" bool 1
+set_or_add_plist_property ":'New Bookmarks':0:'ASCII Anti Aliased'" bool 1
+set_or_add_plist_property ":'New Bookmarks':0:'Non-ASCII Anti Aliased'" bool 1
+set_or_add_plist_property ":'New Bookmarks':0:'Use Non-ASCII Font'" bool 0
+set_or_add_plist_property ":'New Bookmarks':0:'Ambiguous Double Width'" bool 0
 
 # iTerm2: Set window Title to ""
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Custom Window Title' ''" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Use Custom Window Title' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
+set_or_add_plist_property ":'New Bookmarks':0:'Custom Window Title'" string "''"
+set_or_add_plist_property ":'New Bookmarks':0:'Use Custom Window Title'" bool 1
 
 # iTerm2: Set unlimited scrolling
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Scrollback Lines' 0" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Unlimited Scrollback' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
+set_or_add_plist_property ":'New Bookmarks':0:'Scrollback Lines'" integer 0
+set_or_add_plist_property ":'New Bookmarks':0:'Unlimited Scrollback'" bool 1
 
 # iTerm2: Set window size
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Columns' 100" ~/Library/Preferences/com.googlecode.iterm2.plist
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Rows' 30" ~/Library/Preferences/com.googlecode.iterm2.plist
+set_or_add_plist_property ":'New Bookmarks':0:'Columns'" integer 100
+set_or_add_plist_property ":'New Bookmarks':0:'Rows'" integer 30
 
 # iTerm2: Terminal Type
-/usr/libexec/PlistBuddy -c "Set :'New Bookmarks':0:'Terminal Type' 'xterm-256color'" ~/Library/Preferences/com.googlecode.iterm2.plist
+set_or_add_plist_property ":'New Bookmarks':0:'Terminal Type'" string "'xterm-256color'"
 
 # iTerm2: Hide Scroll bar and make Theme to Minimal
 defaults write com.googlecode.iterm2 "HideScrollbar" 1

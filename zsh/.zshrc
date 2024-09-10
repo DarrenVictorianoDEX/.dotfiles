@@ -81,20 +81,51 @@ plugins=(
   git
   sudo
   extract
+  kubectl
+  gcloud
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Exports
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# Evals
+eval $(thefuck --alias)
+
+# Bind Keys
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 # Alias
+alias refresh='source ~/.zshrc'
 alias ls='eza --icons -a'
+alias dotfiles="code ~/.dotfiles"
+alias zshrc="code ~/.dotfiles/zsh"
+alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"
+alias k="kubectl"
+alias del="trash"
+alias history='history_clean'
+alias diff='git diff --no-index'
+alias f='fuck'
+alias fman='compgen -c | fzf | xargs man'
+alias ftldr='compgen -c | fzf | xargs tldr'
 
 # Functions
+function trash() {
+	# move items to trash
+	mv -f "$1" ~/.Trash
+	echo "moved to Trash: '$1'"
+}
+
+function history_clean() {
+	history | awk '{first = $1; $1 =""; print $0}' | sed 's/^ //g'
+}
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

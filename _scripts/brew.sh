@@ -35,6 +35,7 @@ packages=(
   jq
   ripgrep
   eza
+  thefuck
   mas  # mac app store
   # Add more packages here
 )
