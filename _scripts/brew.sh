@@ -36,6 +36,7 @@ packages=(
   ripgrep
   eza
   thefuck
+  hugo
   mas  # mac app store
   # Add more packages here
 )
