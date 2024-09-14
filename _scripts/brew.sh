@@ -37,6 +37,7 @@ packages=(
   eza
   thefuck
   hugo
+  imagemagick
   mas  # mac app store
   # Add more packages here
 )

@@ -115,6 +115,7 @@ alias diff='git diff --no-index'
 alias f='fuck'
 alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
+alias hugos='hugo server --noHTTPCache'
 
 # Functions
 function trash() {
