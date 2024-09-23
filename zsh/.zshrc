@@ -86,6 +86,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-substring-search
+  zsh-kubectl-prompt
 )
 
 source $ZSH/oh-my-zsh.sh
