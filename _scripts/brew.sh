@@ -38,6 +38,7 @@ packages=(
   ripgrep   # better grep
   eza       # better ls
   bat       # better cat
+  zoxide    # better cd
   wget
   hugo
   git

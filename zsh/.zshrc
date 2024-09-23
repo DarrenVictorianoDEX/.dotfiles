@@ -96,19 +96,29 @@ eval $(thefuck --alias)
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 source ~/fzf-git.sh/fzf-git.sh
+# zoxide for better cd
+eval "$(zoxide init zsh)"
 
 # Bind Keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Exports
-# let fzf use fs instead of find
+# FZF: let fzf use fs instead of find
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# FZF: let fzf have preview and use eza for dir and bat for files
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+# FZF: catppuccin theme
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--color=selected-bg:#494d64 \
+--multi"
 
 # bat theme
 export BAT_THEME="Catppuccin Macchiato"
@@ -119,6 +129,7 @@ export BAT_THEME="Catppuccin Macchiato"
 alias refresh='source ~/.zshrc'
 alias ls='eza --icons=always'
 alias cat='bat'
+alias cd='z'
 alias dotfiles="code ~/.dotfiles"
 alias zshrc="code ~/.dotfiles/zsh"
 alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"
