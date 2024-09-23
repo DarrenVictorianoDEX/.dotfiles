@@ -22,7 +22,3 @@ we may need to rebuild the themes for bat
 ```
 bat cache --build
 ```
-then activate it
-```
-bat --list-themes | fzf --preview="bat theme={} --color=always ~/.zshrc"
-```
