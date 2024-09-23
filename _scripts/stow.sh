@@ -8,6 +8,11 @@ clone_dotfiles() {
     echo "Cloning dotfiles repository..."
     git clone https://github.com/DarrenVictoriano/.dotfiles.git "$DOTFILES_DIR"
     echo "dotfiles repository cloned into $DOTFILES_DIR."
+
+    # Initialize and update submodules
+    echo "Initializing and updating submodules..."
+    cd "$DOTFILES_DIR" || exit
+    git submodule update --init --recursive
   else
     echo "dotfiles repository is already cloned."
   fi
