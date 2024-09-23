@@ -106,12 +106,19 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# bat theme
+export BAT_THEME="Catppuccin Macchiato"
 
 
 # Alias
 # For a full list of active aliases, run `alias`.
 alias refresh='source ~/.zshrc'
 alias ls='eza --icons=always'
+alias cat='bat'
 alias dotfiles="code ~/.dotfiles"
 alias zshrc="code ~/.dotfiles/zsh"
 alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"
@@ -134,15 +141,33 @@ history_clean() {
 	history | awk '{first = $1; $1 =""; print $0}' | sed 's/^ //g'
 }
 
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  # for ** completion of fzf for looking file and dir
   fd --hidden --exclude .git . "$1"
 }
 
+#  for ** completion of fzf for looking dir
 _fzf_compgen_dir() {
-  #  for ** completion of fzf for looking dir
-  fd --hiddem --exclude .git . "$1"
+  fd --type=d --hidden --exclude .git . "$1"
 }
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
