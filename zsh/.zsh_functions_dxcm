@@ -1,0 +1,181 @@
+#!/bin/bash
+
+function getmysql () {
+		if [[ "$1" = "follow" ]]; then
+			kubectl -n tester4-follow exec -ti pod/follow-edge-0 -- cat /vault/secrets/follow-mysql-certs
+			echo "command: kubectl -n tester1-follow exec -ti pod/follow-edge-0 -- cat /vault/secrets/follow-mysql-certs"
+		elif [[ "$1" = "email" ]]; then
+			kubectl -n tester4-email exec -ti pod/email-api-service-0 -- cat /vault/secrets/email-mysql-certs
+			echo "command: kubectl -n tester1-email exec -ti pod/email-api-service-0 -- cat /vault/secrets/email-mysql-certs"
+		elif [[ "$1" = "security" ]]; then
+			kubectl -n tester1-security exec -ti pod/security-api-1 -- cat /vault/secrets/security-mysql-certs
+			echo "command: kubectl -n tester1-security exec -ti pod/security-api-1 -- cat /vault/secrets/security-mysql-certs"
+		elif [[ "$1" = "push" ]]; then
+			kubectl -n tester4-push exec -ti pod/notification-api-0 -- cat /vault/secrets/push-mysql-certs
+			echo "command: kubectl -n tester1-push exec -ti pod/notification-api-0 -- cat /vault/secrets/push-mysql-certs"
+		fi
+}
+
+function zoom () {
+	echo "https://dexcom.zoom.us/j/8986296027?pwd=MjBWUGZaZlJ3L2lzRW5MWHdBSmJSZz09" | pbcopy
+	echo "zoom invite link copied to clipboard"
+}
+
+function getdbcli () {
+		if [[ "$1" = "follow" ]]; then
+			echo "mysql -h mysql-0.mysql.follow-mysql.svc.cluster.local -u'$2' -p'$3'" | pbcopy
+			echo "follow cluster ip copied to clipboard"
+		elif [[ "$1" = "email" ]]; then
+			echo "mysql -h mysql-0.mysql.email-mysql.svc.cluster.local -u'$2' -p'$3'" | pbcopy
+			echo "email cluster ip copied to clipboard"
+		elif [[ "$1" = "security" ]]; then
+			echo "mysql -h mysql-0.mysql.security-mysql.svc.cluster.local -u'$2' -p'$3'" | pbcopy
+			echo "security cluster ip copied to clipboard"
+		fi
+}
+
+function removebom() {
+	sed $'1s/\xef\xbb\xbf//' "$1" "$2"
+	echo "BOM removed"
+}
+
+function set_gcp_account() {
+	echo "gcloud config set account darren.victoriano@dexcom.com"
+	gcloud config set account darren.victoriano@dexcom.com
+}
+
+function set_gcp_project() {
+	readonly project=${1:?"GCP Project must be specified."}
+	
+	echo "gcloud config set project $project"
+	gcloud config set project "$project"
+}
+
+function gcp_udp1() {
+	set_gcp_account
+	set_gcp_project g5-dexcom-accvandv-us-5
+	
+	echo "gcloud container clusters get-credentials kubernetes-g5-dexcom-accvandv-us-5 --region us-central1-a --project g5-dexcom-accvandv-us-5"
+	gcloud container clusters get-credentials kubernetes-g5-dexcom-accvandv-us-5 --region us-central1-a --project g5-dexcom-accvandv-us-5
+}
+
+function gcp_udp2() {
+	set_gcp_account
+	set_gcp_project vnv-us-5g-udp2-2
+	
+	echo "gcloud container clusters get-credentials vnv-us-5g-udp2-2 --region us-central1 --project vnv-us-5g-udp2-2"
+	gcloud container clusters get-credentials vnv-us-5g-udp2-2 --region us-central1 --project vnv-us-5g-udp2-2
+}
+
+function gcp_udp2_udprel() {
+	set_gcp_account
+	set_gcp_project prodtest-us-5g-udp2-5
+	
+	echo "gcloud container clusters get-credentials prodtest-us-5g-udp2-5 --region us-central1 --project prodtest-us-5g-udp2-5"
+	gcloud container clusters get-credentials prodtest-us-5g-udp2-5 --region us-central1 --project prodtest-us-5g-udp2-5
+}
+
+function gcp_udp2_g7int1() {
+	set_gcp_account
+	set_gcp_project prodtest-us-5g-udp2-4
+	
+	echo "gcloud container clusters get-credentials prodtest-us-5g-udp2-4 --region us-central1 --project prodtest-us-5g-udp2-4"
+	gcloud container clusters get-credentials prodtest-us-5g-udp2-4 --region us-central1 --project prodtest-us-5g-udp2-4
+}
+
+function gcp_udp1_g7int1() {
+	set_gcp_account
+	set_gcp_project g5-dexcom-integration-eu-udp-7
+	
+	echo "gcloud container clusters get-credentials gke-cluster-1 --region europe-west3 --project g5-dexcom-integration-eu-udp-7"
+	gcloud container clusters get-credentials gke-cluster-1 --region europe-west3 --project g5-dexcom-integration-eu-udp-7
+}
+
+function gcp_udp1_devjp() {
+	set_gcp_account
+	set_gcp_project g5-dexcom-integration-jp-udp-1
+	
+	echo "gcloud container clusters get-credentials gke-cluster-1 --region asia-northeast1 --project g5-dexcom-integration-jp-udp-1"
+	gcloud container clusters get-credentials gke-cluster-1 --region asia-northeast1 --project g5-dexcom-integration-jp-udp-1
+}
+
+function gcp_udp1_partnere2e() {
+	set_gcp_account
+	set_gcp_project g5-dexcom-dev-us-5
+	
+	echo "gcloud container clusters get-credentials g5-dexcom-dev-us-5 --zone us-central1-a --project g5-dexcom-dev-us-5"
+	gcloud container clusters get-credentials g5-dexcom-dev-us-5 --zone us-central1-a --project g5-dexcom-dev-us-5
+}
+
+function gcp_udp2_partnere2e() {
+	set_gcp_account
+	set_gcp_project prodtest-us-5g-udp2-6
+	
+	echo "gcloud container clusters get-credentials prodtest-us-5g-udp2-6 --region us-central1 --project prodtest-us-5g-udp2-6"
+	gcloud container clusters get-credentials prodtest-us-5g-udp2-6 --region us-central1 --project prodtest-us-5g-udp2-6
+}
+
+function gcp_udp2_partnere2e() {
+	set_gcp_account
+	set_gcp_project prodtest-us-5g-udp2-6
+	
+	echo "gcloud container clusters get-credentials prodtest-us-5g-udp2-6 --region us-central1 --project prodtest-us-5g-udp2-6"
+	gcloud container clusters get-credentials prodtest-us-5g-udp2-6 --region us-central1 --project prodtest-us-5g-udp2-6
+}
+
+function gcp_udp1_prodtest() {
+	set_gcp_account
+	set_gcp_project g5-dexcom-prodtest-us-5
+	
+	echo "gcloud container clusters get-credentials g5-dexcom-prodtest-us-5 --zone us-central1-a --project g5-dexcom-prodtest-us-5"
+	gcloud container clusters get-credentials g5-dexcom-prodtest-us-5 --zone us-central1-a --project g5-dexcom-prodtest-us-5
+}
+
+function gcp_udp2_loadtest() {
+	set_gcp_account
+	set_gcp_project dev-us-5g-udp2-1
+	
+	echo "gcloud container clusters get-credentials dev-us-5g-udp2-1 --region us-central1 --project dev-us-5g-udp2-1"
+	gcloud container clusters get-credentials dev-us-5g-udp2-1 --region us-central1 --project dev-us-5g-udp2-1
+}
+
+function gcp_udp2_loadlocust() {
+	set_gcp_account
+	set_gcp_project prod-us-5g-load-1
+	
+	echo "gcloud container clusters get-credentials gke-autopilot-us --region us-central1 --project prod-us-5g-load-1"
+	gcloud container clusters get-credentials gke-autopilot-us --region us-central1 --project prod-us-5g-load-1
+}
+
+
+function gcp_cep_devus() {
+	set_gcp_account
+	set_gcp_project dev-us-5g-cep-1
+	
+	echo "gcloud container clusters get-credentials cep --zone us-central1-c --project dev-us-5g-cep-1"
+	gcloud container clusters get-credentials cep --zone us-central1-c --project dev-us-5g-cep-1
+}
+
+function gcp_fedramp() {
+	echo "make sure you are logged in using your fedramp account!"
+	echo "use: gcloud auth login"
+
+	# set gcp account
+	echo "gcloud config set account darren.victoriano@dexcom.us"
+	gcloud config set account darren.victoriano@dexcom.us
+
+	# set gcp project
+	echo "gcloud config set project dxcm-us-va-workloads-non-prod"
+	gcloud config set project dxcm-us-va-workloads-non-prod
+
+	echo "gcloud container clusters get-credentials us-va-non-prod-app-workloads-6ea1251 --region us-central1 --project dxcm-us-va-workloads-non-prod"
+	gcloud container clusters get-credentials us-va-non-prod-app-workloads-6ea1251 --region us-central1 --project dxcm-us-va-workloads-non-prod
+}
+
+
+# function decode() {
+# 	curl --location --request POST 'https://acmsecurity.vnv-us-5g-udp2-2.udp.dexcomdev.com/v1/testing/parseContent' \
+# 	--header 'X-Trace-Id: 7b69b7d6-8f64-4fee-b47a-39d8de06f7c2' \
+# 	--header 'Content-Type: application/json' \
+# 	--data-raw "$1"
+# }

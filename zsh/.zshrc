@@ -86,9 +86,27 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-substring-search
+  zsh-kubectl-prompt
 )
 
 source $ZSH/oh-my-zsh.sh
+
+source $ZSH/oh-my-zsh.sh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
+
+## Parse kubectl promt to only display the context
+function kubectl_prompt() {
+    context=$(echo "$ZSH_KUBECTL_CONTEXT" | cut -d'_' -f2)
+    
+    # Check if the first index is not empty
+    if [ -n "$context" ]; then
+		echo "$context"
+    else
+        # Return an error message if the first index is empty
+        echo "Error: Unable to extract the 1st index from ZSH_KUBECTL_CONTEXT"
+    fi
+}
+RPROMPT='%{$fg[blue]%}($(kubectl_prompt))%{$reset_color%}'
 
 # CLI Tools
 # enable thefuck
@@ -140,8 +158,16 @@ alias diff='git diff --no-index'
 alias f='fuck'
 alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
+## Alias
+source ~/.zsh_aliases
+
+
 
 # Functions
+## Alias Functions
+source ~/.zsh_functions
+source ~/.zsh_functions_dxcm
+
 trash() {
 	# move items to trash
 	mv -f "$1" ~/.Trash
@@ -199,6 +225,29 @@ _fzf_comprun() {
 # the $ZSH_CUSTOM folder, with .zsh extension. Examples:
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dxv1220/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dxv1220/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dxv1220/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dxv1220/google-cloud-sdk/completion.zsh.inc'; fi
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
