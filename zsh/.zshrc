@@ -93,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH/oh-my-zsh.sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 
-### Parse kubectl promt to only display the context
+## Parse kubectl promt to only display the context
 function kubectl_prompt() {
     context=$(echo "$ZSH_KUBECTL_CONTEXT" | cut -d'_' -f2)
     
