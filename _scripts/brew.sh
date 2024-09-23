@@ -26,18 +26,23 @@ install_casks() {
 
 # List of packages to install
 packages=(
-  stow
-  git
-  git-delta
-  fzf
-  tldr
-  tmux
-  jq
-  ripgrep
-  eza
-  thefuck
+  stow      # dotfile manager
+  thefuck   # will correct commands
+  tmux      # terminal multiplexter
+  mas       # mac app store
+  jq        # json parser
+  fzf       # fuzzy finder
+  git-delta # better diff
+  fd        # better find, used by fzf
+  tlrc      # better man
+  ripgrep   # better grep
+  eza       # better ls
+  bat       # better cat
+  zoxide    # better cd
+  wget
   hugo
-  mas  # mac app store
+  git
+  imagemagick
   # Add more packages here
 )
 

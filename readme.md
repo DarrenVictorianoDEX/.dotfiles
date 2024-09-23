@@ -16,3 +16,13 @@ Run this command in your terminal:
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/DarrenVictoriano/.dotfiles/main/install.sh)"
 ```
+
+### bat theme
+we may need to rebuild the themes for bat
+```
+bat cache --build
+```
+then activate it
+```
+bat --list-themes | fzf --preview="bat theme={} --color=always ~/.zshrc"
+```

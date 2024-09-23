@@ -90,21 +90,46 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# Exports
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Evals
+# CLI Tools
+# enable thefuck
 eval $(thefuck --alias)
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+source ~/fzf-git.sh/fzf-git.sh
+# zoxide for better cd
+eval "$(zoxide init zsh)"
 
 # Bind Keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# Exports
+# FZF: let fzf use fs instead of find
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# FZF: let fzf have preview and use eza for dir and bat for files
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+# FZF: catppuccin theme
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--color=selected-bg:#494d64 \
+--multi"
+
+# bat theme
+export BAT_THEME="Catppuccin Macchiato"
+
+
 # Alias
+# For a full list of active aliases, run `alias`.
 alias refresh='source ~/.zshrc'
-alias ls='eza --icons -a'
+alias ls='eza --icons=always'
+alias cat='bat'
+alias cd='z'
 alias dotfiles="code ~/.dotfiles"
 alias zshrc="code ~/.dotfiles/zsh"
 alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"
@@ -117,15 +142,43 @@ alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
 
 # Functions
-function trash() {
+trash() {
 	# move items to trash
 	mv -f "$1" ~/.Trash
 	echo "moved to Trash: '$1'"
 }
 
-function history_clean() {
+history_clean() {
 	history | awk '{first = $1; $1 =""; print $0}' | sed 's/^ //g'
 }
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+#  for ** completion of fzf for looking dir
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -146,11 +199,6 @@ function history_clean() {
 # the $ZSH_CUSTOM folder, with .zsh extension. Examples:
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
