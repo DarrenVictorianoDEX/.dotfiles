@@ -90,21 +90,28 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# Exports
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Evals
+# CLI Tools
+# enable thefuck
 eval $(thefuck --alias)
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+source ~/fzf-git.sh/fzf-git.sh
 
 # Bind Keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# Exports
+# let fzf use fs instead of find
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+
 # Alias
+# For a full list of active aliases, run `alias`.
 alias refresh='source ~/.zshrc'
-alias ls='eza --icons -a'
+alias ls='eza --icons=always'
 alias dotfiles="code ~/.dotfiles"
 alias zshrc="code ~/.dotfiles/zsh"
 alias p10krc="code ~/.dotfiles/p10k/.p10k.zsh"
@@ -115,17 +122,26 @@ alias diff='git diff --no-index'
 alias f='fuck'
 alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
-alias hugos='hugo server --noHTTPCache'
 
 # Functions
-function trash() {
+trash() {
 	# move items to trash
 	mv -f "$1" ~/.Trash
 	echo "moved to Trash: '$1'"
 }
 
-function history_clean() {
+history_clean() {
 	history | awk '{first = $1; $1 =""; print $0}' | sed 's/^ //g'
+}
+
+_fzf_compgen_path() {
+  # for ** completion of fzf for looking file and dir
+  fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+  #  for ** completion of fzf for looking dir
+  fd --hiddem --exclude .git . "$1"
 }
 
 # You may need to manually set your language environment
@@ -147,11 +163,6 @@ function history_clean() {
 # the $ZSH_CUSTOM folder, with .zsh extension. Examples:
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
