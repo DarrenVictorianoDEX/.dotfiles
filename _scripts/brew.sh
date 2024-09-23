@@ -28,7 +28,6 @@ install_casks() {
 packages=(
   stow      # dotfile manager
   thefuck   # will correct commands
-  tmux      # terminal multiplexter
   mas       # mac app store
   jq        # json parser
   fzf       # fuzzy finder
@@ -39,6 +38,7 @@ packages=(
   eza       # better ls
   bat       # better cat
   zoxide    # better cd
+  tmux
   wget
   hugo
   git
