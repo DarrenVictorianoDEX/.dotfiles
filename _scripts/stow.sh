@@ -2,19 +2,30 @@
 
 # Define variables
 DOTFILES_DIR="$HOME/.dotfiles"
+TPM_DIR="$HOME/.tmux/plugins/tpm"
 
 clone_dotfiles() {
   if [ ! -d "$DOTFILES_DIR" ]; then
     echo "Cloning dotfiles repository..."
     git clone https://github.com/DarrenVictoriano/.dotfiles.git "$DOTFILES_DIR"
-    echo "dotfiles repository cloned into $DOTFILES_DIR."
+    echo "Dotfiles repository cloned into $DOTFILES_DIR."
 
     # Initialize and update submodules
     echo "Initializing and updating submodules..."
     cd "$DOTFILES_DIR" || exit
     git submodule update --init --recursive
   else
-    echo "dotfiles repository is already cloned."
+    echo "Dotfiles repository is already cloned."
+  fi
+}
+
+clone_tpm() {
+  if [ ! -d "$TPM_DIR" ]; then
+    echo "Cloning Tmux Plugin Manager (TPM) into $TPM_DIR..."
+    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+    echo "TPM has been cloned into $TPM_DIR."
+  else
+    echo "TPM is already cloned at $TPM_DIR."
   fi
 }
 
@@ -73,6 +84,7 @@ dotfiles_list=(
 )
 
 clone_dotfiles
+clone_tpm
 stow_dotfiles "${dotfiles_list[@]}"
 
 echo "\nStowing done!"
