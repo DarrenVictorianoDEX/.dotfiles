@@ -55,11 +55,17 @@ stow_dotfiles() {
       dir="${dotfile%%:*}"        # Extract directory name before the colon
       home_file="$HOME/${dotfile##*:}"  # Extract home file name after the colon
 
-      # Check if the corresponding file exists in the home directory and delete it
+      # Check if the corresponding file or directory exists in the home directory and delete it
       if [ -e "$home_file" ]; then
-        echo "Deleting existing file $home_file..."
-        rm -f "$home_file"
-        echo "$home_file deleted."
+        if [ -d "$home_file" ]; then
+          echo "Deleting existing directory $home_file..."
+          rm -rf "$home_file"  # Recursively delete directories
+          echo "$home_file directory deleted."
+        else
+          echo "Deleting existing file $home_file..."
+          rm -f "$home_file"  # Delete files
+          echo "$home_file file deleted."
+        fi
       fi
 
       # Stow the directory if it exists
@@ -81,6 +87,9 @@ dotfiles_list=(
   "p10k:.p10k.zsh"
   "hushlogin:.hushlogin"
   "git:.gitconfig"
+  "tmux:.tmux.conf"
+  "bat:.config/bat"
+  "nvim:.config/nvim"
 )
 
 clone_dotfiles
@@ -88,3 +97,4 @@ clone_tpm
 stow_dotfiles "${dotfiles_list[@]}"
 
 echo "\nStowing done!"
+
