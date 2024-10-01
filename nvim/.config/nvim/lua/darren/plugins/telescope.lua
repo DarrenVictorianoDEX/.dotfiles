@@ -40,5 +40,10 @@ return {
     keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
     keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
+    -- Shortcut for searching your Neovim configuration files
+      vim.keymap.set('n', '<leader>fn', function()
+        builtin.find_files { cwd = vim.fn.stdpath 'config' }
+      end, { desc = '[F]ind [N]eovim files' })
+
   end,
 }

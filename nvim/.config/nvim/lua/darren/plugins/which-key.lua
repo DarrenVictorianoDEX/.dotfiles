@@ -52,6 +52,7 @@ return {
         { '<leader>w', group = '[W]indows' },
         { '<leader>t', group = '[T]abs' },
         { '<leader>n', group = '[N]o Highlights'},
+        { '<leader>s', group = '[S]essions'},
         -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
 
