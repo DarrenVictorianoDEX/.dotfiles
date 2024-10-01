@@ -81,6 +81,7 @@ dotfiles_list=(
   "p10k:.p10k.zsh"
   "hushlogin:.hushlogin"
   "git:.gitconfig"
+  "tmux:.tmux.conf"
 )
 
 clone_dotfiles

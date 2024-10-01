@@ -39,6 +39,7 @@ packages=(
   bat       # better cat
   zoxide    # better cd
   tmux
+  nvim
   wget
   hugo
   git
