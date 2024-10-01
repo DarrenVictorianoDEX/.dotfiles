@@ -51,7 +51,7 @@ return {
         { '<leader>f', group = '[F]ind' },
         { '<leader>w', group = '[W]indows' },
         { '<leader>t', group = '[T]abs' },
-        { '<leader>n', group = '[N]o Highlights'},
+        { '<leader>c', group = '[C]ommands'},
         { '<leader>s', group = '[S]essions'},
         -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
