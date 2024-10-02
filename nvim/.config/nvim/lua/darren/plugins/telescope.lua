@@ -39,7 +39,7 @@ return {
 		keymap.set("n", "<leader>fs", builtin.current_buffer_fuzzy_find, { desc = "[F]ind [S]tring Current Buffer" })
 		keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
 		keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
-		keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
+		keymap.set("n", "<leader>fdw", builtin.diagnostics, { desc = "[F]ind [D]iagnostics for [W]orkspace" })
 		keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "[F]ind [T]odo Comments" })
 		keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })

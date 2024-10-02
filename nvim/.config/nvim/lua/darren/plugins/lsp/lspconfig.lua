@@ -24,33 +24,43 @@ return {
 				-- Buffer local mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
-				local builtin = require("telescope.builtin")
+				local telescope_builtin = require("telescope.builtin")
 
 				-- set keybinds
-				-- TODO: Update keymaps
-				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", builtin.lsp_references, opts) -- show definition, references, show all references of the work under the cursor
 
+				-- Jump to the definition of the word under your cursor.
+				--  This is where a variable was first declared, or where a function is defined, etc.
+				--  To jump back, press <C-t>.
+				opts.desc = "[G]o to [D]efinition"
+				keymap.set("n", "gd", telescope_builtin.lsp_definitions, opts)
+
+				-- Find references for the word under your cursor.
+				opts.desc = "[G]o to [R]eferences"
+				keymap.set("n", "gr", telescope_builtin.lsp_references, opts)
+
+				-- Jump to the implementation of the word under your cursor.
+				--  Useful when your language has ways of declaring types without an actual implementation.
+				opts.desc = "[G]o to [I]implementation"
+				keymap.set("n", "gi", telescope_builtin.lsp_implementations, opts)
+
+				-- Jump to the type of the word under your cursor.
+				--  Useful when you're not sure what type a variable is and you want to see
+				--  the definition of its *type*, not where it was *defined*.
+				opts.desc = "[G]o to [T]ype Definition"
+				keymap.set("n", "gt", telescope_builtin.lsp_type_definitions, opts)
+
+				-- Fuzzy find all the symbols in your current document.
+				--  Symbols are things like variables, functions, types, etc.
+				-- opts.desc = "[F]ind Document Symbols"
+
+				-- WARN: This is not Goto Definition, this is Goto Declaration.
+				--  For example, in C this would take you to the header.
 				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-
-				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-
-				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-				opts.desc = "See available code actions"
-				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions how to fix, in visual mode will apply to selection
-
-				opts.desc = "Smart rename"
-				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+				-- show  diagnostics for file
+				opts.desc = "[F]ind [D]iagnostic for [C]urrent Buffer"
+				keymap.set("n", "<leader>fdc", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
 				-- opts.desc = "Show line diagnostics"
 				-- keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
@@ -64,8 +74,18 @@ return {
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "gk", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
-				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+				opts.desc = "Restart L[S]P"
+				keymap.set("n", "<leader>cs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+				-- Rename the variable under your cursor.
+				--  Most Language Servers support renaming across files, etc.
+				opts.desc = "Smart [R]ename"
+				keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
+
+				-- Execute a code action, usually your cursor needs to be on top of an error
+				-- or a suggestion from your LSP for this to activate.
+				opts.desc = "See [A]vailable code actions"
+				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 			end,
 		})
 
