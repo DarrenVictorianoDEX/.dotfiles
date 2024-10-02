@@ -31,8 +31,9 @@ return {
 
     keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
     keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
+    keymap.set('n', '<leader>fp', builtin.builtin, { desc = '[F]ind Builtin [P]ickers' })
     keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-    keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
+    keymap.set('n', '<leader>fs', builtin.current_buffer_fuzzy_find, { desc = '[F]ind [S]tring Current Buffer' })
     keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
     keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
     keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
