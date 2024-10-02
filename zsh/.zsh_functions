@@ -1,6 +1,10 @@
 
 #!/bin/bash
 
+function pandoc_md_to_pdf () {
+    pandoc "$1" -o "$2" --verbose --template=eisvogel --from markdown --listings -V listings-no-page-break 
+}
+
 function kbash () {
 	#Execute a command in a container.
 	# tester1-follow follow-edge-0
