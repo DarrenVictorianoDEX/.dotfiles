@@ -49,6 +49,15 @@ return {
 				opts.desc = "Go to [T]ype Definition"
 				keymap.set("n", "gt", telescope_builtin.lsp_type_definitions, opts)
 
+				-- show documentation for what is under cursor
+				opts.desc = "Show do[K]umentation for what is under cursor"
+				keymap.set("n", "gk", vim.lsp.buf.hover, opts)
+
+				-- WARN: This is not Goto Definition, this is Goto Declaration.
+				--  For example, in C this would take you to the header.
+				opts.desc = "Go to declaration"
+				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
 				-- Fuzzy find all the symbols in your current document.
 				--  Symbols are things like variables, functions, types, etc.
 				opts.desc = "Find Symbols for [C]urrent Document"
@@ -58,11 +67,6 @@ return {
 				--  Similar to document symbols, except searches over your entire project.
 				opts.desc = "Find Symbols for [W]orkspace"
 				keymap.set("n", "<leader>fvw", telescope_builtin.lsp_dynamic_workspace_symbols, opts)
-
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				--  For example, in C this would take you to the header.
-				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
 				-- show  diagnostics for file
 				opts.desc = "Find Diagnostic for [C]urrent Buffer"
@@ -79,10 +83,6 @@ return {
 				-- jump to next diagnostic in buffer
 				opts.desc = "Go to next diagnostic"
 				keymap.set("n", "<leader>fdn", vim.diagnostic.goto_next, opts)
-
-				-- show documentation for what is under cursor
-				opts.desc = "Show do[K]umentation for what is under cursor"
-				keymap.set("n", "gk", vim.lsp.buf.hover, opts)
 
 				-- mapping to restart lsp if necessary
 				opts.desc = "Restart L[S]P"
