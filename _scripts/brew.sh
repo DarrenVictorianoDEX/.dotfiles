@@ -38,6 +38,8 @@ packages=(
   eza       # better ls
   bat       # better cat
   zoxide    # better cd
+  node      # node for nvm
+  jesseduffield/lazygit/lazygit  # Lazygit for nvim
   tmux
   nvim
   wget
