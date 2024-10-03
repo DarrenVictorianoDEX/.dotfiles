@@ -54,7 +54,8 @@ return {
 			{ "<leader>c", group = "[C]ommands" },
 			{ "<leader>s", group = "[S]essions" },
 			{ "<leader>x", group = "[X]Trouble" },
-			{ "<leader>fd", group = "[D]iagnostics" },
+			{ "<leader>fd", group = "Find [D]iagnostics" },
+			{ "<leader>fv", group = "Find [V]ariables or Symbols" },
 			-- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
 		},
 		keys = {
