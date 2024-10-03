@@ -23,12 +23,12 @@ return {
 			},
 		})
 
+		-- NOTE: to install using the ui
+		-- command is :Mason
+		-- i for install
+		-- X to uninstall
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
-			-- NOTE: to install using the ui
-			-- command is :Mason
-			-- i for install
-			-- X to uninstall
 			ensure_installed = {
 				"ts_ls",
 				"html",
@@ -36,10 +36,11 @@ return {
 				"lua_ls",
 				"pyright",
 				"clangd",
+				"robotframework_ls",
+				"bashls", -- requires rust
 				-- "csharp_ls",
 				-- "gdscript",
 				-- "gopls",
-				"robotframework_ls",
 			},
 		})
 
@@ -51,6 +52,7 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
+				"shellharden", -- bash linter
 			},
 		})
 	end,
