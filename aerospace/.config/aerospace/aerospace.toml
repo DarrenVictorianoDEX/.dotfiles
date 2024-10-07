@@ -206,9 +206,9 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 # auto move to workspace T
-[[on-window-detected]]
-if.app-id = 'com.googlecode.iterm2'
-run = 'move-node-to-workspace T'
+# [[on-window-detected]]
+# if.app-id = 'com.googlecode.iterm2'
+# run = 'move-node-to-workspace T'
 
 # auto move to workspace C
 [[on-window-detected]]
@@ -218,7 +218,6 @@ run = 'move-node-to-workspace C'
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace C'
-
 
 # auto move to workspace A
 [[on-window-detected]]
@@ -249,5 +248,8 @@ run = 'move-node-to-workspace D'
 if.app-id = 'com.apple.finder'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+run = 'layout floating'
 
 
