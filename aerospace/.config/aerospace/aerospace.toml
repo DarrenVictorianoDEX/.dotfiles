@@ -88,10 +88,6 @@ outer.right =      5
 # end tell'
 # '''
 
-## Disable MacOS shortcut
-cmd-h = [] # Disable "hide application"
-cmd-alt-h = [] # Disable "hide others"
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -234,9 +230,9 @@ if.app-id = 'com.jetbrains.pycharm.ce'
 run = 'move-node-to-workspace S'
 
 # make finder float
-[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'layout float'
+# [on-window-detected]]
+# if.app-id = 'com.apple.finder'
+# run = 'layout float'
 
 
 
