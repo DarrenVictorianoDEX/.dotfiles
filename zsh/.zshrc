@@ -140,7 +140,7 @@ alias diff='git diff --no-index'
 alias f='fuck'
 alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
-alias nvim_notes='nvim /Users/darren/Library/Mobile Documents/iCloud~md~obsidian/Documents/SecondBrain'
+alias nvim_notes='cd /Users/darren/Library/Mobile Documents/iCloud~md~obsidian/Documents/SecondBrain; nvim'
 
 # Functions
 trash() {
