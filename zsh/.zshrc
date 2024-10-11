@@ -251,3 +251,6 @@ if [ -f '/Users/dxv1220/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2024-10-08 22:09:10
+export PATH="$PATH:/Users/dxv1220/.local/bin"
