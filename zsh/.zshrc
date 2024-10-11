@@ -158,15 +158,10 @@ alias diff='git diff --no-index'
 alias f='fuck'
 alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
-<<<<<<< HEAD
 ## Alias
 source ~/.zsh_aliases
 
 
-||||||| 2cf2bfd
-=======
-alias nvim_notes='cd /Users/darren/Library/Mobile Documents/iCloud~md~obsidian/Documents/SecondBrain; nvim'
->>>>>>> ce085ce21cdb96d3d61797556a4c111c9d24a62a
 
 # Functions
 ## Alias Functions
@@ -259,3 +254,4 @@ if [ -f '/Users/dxv1220/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d
 
 # Created by `pipx` on 2024-10-08 22:09:10
 export PATH="$PATH:/Users/dxv1220/.local/bin"
+
