@@ -180,13 +180,7 @@ alt-shift-s = 'move-node-to-workspace S'
 # alt-shift-z = 'move-node-to-workspace Z'
 
 # Toggle fullscreen for active app
-<<<<<<< HEAD
-# alt-f = 'fullscreen'
-||||||| ce085ce
-alt-f = 'fullscreen'
-=======
 alt-cmd-f = 'fullscreen'
->>>>>>> 8e7772a4abb7d2fb0155b5471bed59d0aa350113
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -250,11 +244,6 @@ run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
-<<<<<<< HEAD
-run = 'move-node-to-workspace A'
-||||||| ce085ce
-run = 'move-node-to-workspace D'
-=======
 run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
@@ -264,7 +253,6 @@ run = 'move-node-to-workspace A'
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
 run = 'layout tiling'
->>>>>>> 8e7772a4abb7d2fb0155b5471bed59d0aa350113
 
 # make finder float
 [[on-window-detected]]
