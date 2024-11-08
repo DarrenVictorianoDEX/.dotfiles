@@ -38,7 +38,7 @@ return {
 				"clangd",
 				"robotframework_ls",
 				"bashls", -- requires rust
-				-- "csharp_ls",
+				"omnisharp",
 				-- "gdscript",
 				-- "gopls",
 			},
@@ -54,6 +54,7 @@ return {
 				"mypy", -- python linter
 				"eslint_d", -- js linter
 				"shellharden", -- bash linter
+				-- "ast-grep", -- csharp linter/formatter
 			},
 		})
 	end,
