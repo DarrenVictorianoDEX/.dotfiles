@@ -217,25 +217,25 @@ alt-shift-l = ['join-with right', 'mode main']
 # auto move to workspace C
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = 'move-node-to-workspace D'
+run = 'move-node-to-workspace F'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace D'
+run = 'move-node-to-workspace F'
 
 # auto move to workspace A
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace F'
+run = 'move-node-to-workspace S'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-run = 'move-node-to-workspace F'
+run = 'move-node-to-workspace S'
 
 # auto move to workspace S
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm.ce'
-run = 'move-node-to-workspace S'
+run = 'move-node-to-workspace D'
 
 # auto move to workspace D
 [[on-window-detected]]
