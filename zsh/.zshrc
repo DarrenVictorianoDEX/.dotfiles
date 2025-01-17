@@ -130,7 +130,7 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 # FZF: let fzf have preview and use eza for dir and bat for files
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 # export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-export FZF_CTRL_T_OPTS="--preview '~/fzf-git.sh/fzf-preview.sh {}'"
+export FZF_CTRL_T_OPTS="--preview '~/.zsh_fzf_preview.sh {}'"
 
 
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
