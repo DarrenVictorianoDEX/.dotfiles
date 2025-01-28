@@ -209,11 +209,6 @@ alt-shift-l = ['join-with right', 'mode main']
 # Find AppID using the command
 # aerospace list-apps
 
-# auto move to workspace T
-# [[on-window-detected]]
-# if.app-id = 'com.googlecode.iterm2'
-# run = 'move-node-to-workspace T'
-
 # auto move to workspace F
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
@@ -248,6 +243,10 @@ run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace A'
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
 run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
