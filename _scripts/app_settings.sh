@@ -77,7 +77,7 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # MacOS: Make key repeat faster
-defaults write -g InitialKeyRepeat -int 13 # normal minimum is 15 (225 ms)
+defaults write -g InitialKeyRepeat -int 14 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1         # normal minimum is 2 (30 ms)
 
 # MacOS: make dock auto-hide animation fast
