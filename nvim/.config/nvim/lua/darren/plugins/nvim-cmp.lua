@@ -47,6 +47,7 @@ return {
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
+				{ name = "render-markdown" }, -- for markdown
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu

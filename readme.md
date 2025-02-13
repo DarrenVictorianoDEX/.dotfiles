@@ -27,4 +27,3 @@ you may need to rebuild the themes for bat
 ```
 bat cache --build
 ```
-
