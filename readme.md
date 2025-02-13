@@ -1,4 +1,4 @@
-# tfiles Setup Script
+# Dotfiles Setup Script
 
 This script automates the installation and configuration of my development environment on macOS. It sets up the following:
 
