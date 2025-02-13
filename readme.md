@@ -1,4 +1,4 @@
-# Dotfiles Setup Script
+# tfiles Setup Script
 
 This script automates the installation and configuration of my development environment on macOS. It sets up the following:
 
@@ -27,4 +27,3 @@ you may need to rebuild the themes for bat
 ```
 bat cache --build
 ```
-
