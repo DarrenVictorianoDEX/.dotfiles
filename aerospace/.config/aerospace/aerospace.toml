@@ -270,4 +270,3 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.adobe.Reader'
 run = 'layout floating'
-

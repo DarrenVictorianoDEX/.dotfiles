@@ -87,6 +87,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-history-substring-search
   zsh-kubectl-prompt
+  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -128,7 +129,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 # FZF: let fzf have preview and use eza for dir and bat for files
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+# export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_CTRL_T_OPTS="--preview '~/.zsh_fzf_preview.sh {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 # FZF: catppuccin theme
 export FZF_DEFAULT_OPTS=" \
@@ -158,10 +160,9 @@ alias diff='git diff --no-index'
 alias f='fuck'
 alias fman='compgen -c | fzf | xargs man'
 alias ftldr='compgen -c | fzf | xargs tldr'
+
 ## Alias
 source ~/.zsh_aliases
-
-
 
 # Functions
 ## Alias Functions
@@ -254,4 +255,5 @@ if [ -f '/Users/dxv1220/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d
 
 # Created by `pipx` on 2024-10-08 22:09:10
 export PATH="$PATH:/Users/dxv1220/.local/bin"
-
+export VALID_TOKEN="730bd89bf8dd4ebf619a022d5758c3a2e905d493"
+export LOGGIN="dev"
