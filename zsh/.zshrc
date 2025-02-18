@@ -258,4 +258,5 @@ if [ -f '/Users/dxv1220/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d
 
 # Created by `pipx` on 2024-10-08 22:09:10
 export PATH="$PATH:/Users/dxv1220/.local/bin"
-
+export VALID_TOKEN="730bd89bf8dd4ebf619a022d5758c3a2e905d493"
+export LOGGIN="dev"
