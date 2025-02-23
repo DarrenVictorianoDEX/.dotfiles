@@ -38,6 +38,7 @@ return {
 				"clangd",
 				"robotframework_ls",
 				"bashls", -- requires rust
+				"marksman",
 				-- "csharp_ls",
 				-- "gdscript",
 				-- "gopls",
