@@ -170,9 +170,19 @@ source ~/.zsh_functions
 source ~/.zsh_functions_dxcm
 
 trash() {
-	# move items to trash
-	mv -f "$1" ~/.Trash
-	echo "moved to Trash: '$1'"
+    # Try to move the item to Trash
+    mv -f "$1" ~/.Trash
+    if [ $? -eq 0 ]; then
+        echo "Moved to Trash: '$1'"
+    else
+        # If moving to Trash fails, delete the item
+        rm -f "$1"
+        if [ $? -eq 0 ]; then
+            echo "Deleted: '$1'"
+        else
+            echo "Failed to delete: '$1'"
+        fi
+    fi
 }
 
 history_clean() {
