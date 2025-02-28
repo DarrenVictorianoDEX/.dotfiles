@@ -176,7 +176,7 @@ trash() {
         echo "Moved to Trash: '$1'"
     else
         # If moving to Trash fails, delete the item
-        rm -f "$1"
+        rm -rf "$1"
         if [ $? -eq 0 ]; then
             echo "Deleted: '$1'"
         else
