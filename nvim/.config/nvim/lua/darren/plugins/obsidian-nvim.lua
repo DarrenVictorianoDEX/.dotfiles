@@ -5,6 +5,8 @@ return {
 	ft = "markdown",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim",
+		"hrsh7th/nvim-cmp",
 	},
 	opts = {
 		workspaces = {
@@ -17,7 +19,7 @@ return {
 			enable = false, -- disable custom UI features (like checkboxes, headings, etc.)
 		},
 		completion = {
-			nvim_cmp = false, -- disable obsidian-specific completion
+			nvim_cmp = true, -- disable obsidian-specific completion
 		},
 		templates = {
 			subdir = "Templates",
@@ -25,5 +27,8 @@ return {
 			time_format = "%H:%M",
 		},
 		mappings = {}, -- avoid overriding keys like `gf` or `[[]]` navigation
+		picker = {
+			name = "telescope.nvim",
+		},
 	},
 }
